@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Sukurti Derinimo Laišką</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .ms-label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .ms-select, .ms-button {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ababab;
+            border-radius: 2px;
+            box-sizing: border-box;
+        }
+        .ms-button {
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        .ms-button:hover {
+            background-color: #005a9e;
+        }
+    </style>
+
+    <script>
+        Office.onReady(function(info) {
+            if (info.host === Office.HostType.Outlook) {
+                document.getElementById("sukurtiLaiska").onclick = sukurtiLaiska;
+            }
+        });
+
+        function sukurtiLaiska() {
+            const objektas = document.getElementById("cmbObjektas").value;
+            const rusis = document.getElementById("cmbRusis").value;
+            const porusis = document.getElementById("cmbPorusis").value;
+
+            let body = "Objekto pavadinimas: " + objektas + "<br>" +
+                       "Rūšis: " + rusis + "<br>" +
+                       "Porūšis: " + porusis + "<br>" +
+                       "Siuntimo priežastis: <span style='color:red;'>Įvesti ranka</span>";
+
+            Office.context.mailbox.displayNewMessageForm({
+                toRecipients: ["derinimas@vstatyba.lt"],
+                subject: objektas,
+                htmlBody: body
+            });
+        }
+    </script>
+</head>
+<body>
+    <label for="cmbObjektas" class="ms-label">Objektas</label>
+    <select id="cmbObjektas" class="ms-select">
+        <option>ADAM_S</option>
+        <option>Administraciniai</option>
+        <option>ALG3_S</option>
+        <option>AVIA_G</option>
+        <option>AVIT_G</option>
+        <option>AXM2_G</option>
+        <option>BARA_G</option>
+        <option>CITU_G</option>
+        <option>CONT_IHM_G</option>
+        <option>CONT_PRO2_G</option>
+        <option>CONT_WHS_G</option>
+        <option>DI0E_G</option>
+        <option>DIAB_G</option>
+        <option>DICD_G</option>
+        <option>DIFG_G</option>
+        <option>DOBR_G</option>
+        <option>DO60_G</option>
+        <option>DONE_G</option>
+        <option>EIVE_G</option>
+        <option>ERIA_Betonavimas</option>
+        <option>ESCO_G</option>
+        <option>EXPR_G</option>
+        <option>GEDI_G</option>
+        <option>GRAN_G</option>
+        <option>HEL1_G</option>
+        <option>HEL2_G</option>
+        <option>HERO_S</option>
+        <option>JONA_G</option>
+        <option>JUNG_G</option>
+        <option>K18B_G</option>
+        <option>KE2C_G</option>
+        <option>KERA_G</option>
+        <option>KLPD_G</option>
+        <option>KONS_G</option>
+        <option>KOSC_G</option>
+        <option>KUFA_G</option>
+        <option>LICE_S</option>
+        <option>LINK_G</option>
+        <option>LV21A</option>
+        <option>LVOV_S</option>
+        <option>MAIR_Betonavimas</option>
+        <option>MIN2_G</option>
+        <option>MIN3_G</option>
+        <option>NAR1_G</option>
+        <option>NAR2_G</option>
+        <option>NAUJ_G</option>
+        <option>NEMU_S</option>
+        <option>NOVA_G</option>
+        <option>PANE_G</option>
+        <option>PETE_G</option>
+        <option>REGB_S</option>
+        <option>RODU_G</option>
+        <option>SALT_G</option>
+        <option>SAN1_G</option>
+        <option>SAN2_G</option>
+        <option>SAVA_G</option>
+        <option>SPARI_G</option>
+        <option>SPARII_G</option>
+        <option>SPARIII_G</option>
+        <option>SU02_G</option>
+        <option>SU04_G</option>
+        <option>SU11_G</option>
+        <option>SVEI_G</option>
+        <option>UPES_G</option>
+        <option>VADU_G</option>
+        <option>VANA_Betonavimas</option>
+        <option>VIEN_G</option>
+        <option>VUCH_Betonavimas</option>
+        <option>VUCH_S</option>
+    </select>
+
+    <label for="cmbRusis" class="ms-label">Rūšis</label>
+    <select id="cmbRusis" class="ms-select">
+        <option>Administraciniai</option>
+        <option>Garantiniai</option>
+        <option>Instituciniai</option>
+        <option>Subrangos</option>
+        <option>Užsakovinės</option>
+    </select>
+
+    <label for="cmbPorusis" class="ms-label">Porūšis</label>
+    <select id="cmbPorusis" class="ms-select">
+        <option>Draudiminiai</option>
+        <option>Draudiminiai kompleksiniai</option>
+        <option>Finasiniai</option>
+        <option>Kiti</option>
+        <option>Kompleksiniai</option>
+        <option>Tipiniai</option>
+    </select>
+    
+    <button id="sukurtiLaiska" class="ms-button">Sukurti laišką</button>
+</body>
+</html>
